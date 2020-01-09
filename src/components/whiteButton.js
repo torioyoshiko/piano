@@ -5,25 +5,17 @@ const synth = new Tone.Synth();
 synth.oscillator.type = "sine";
 synth.toMaster();
 
-function log() {
-
-    synth.triggerAttackRelease("C4", "1n");
-}
-
-document.addEventListener("keydown", e => {
-    switch (e.key) {
-        case "z":
-            return synth.triggerAttack("C4", "1n");
-        default:
-            return;
-    }
-});
-
-
-function WhiteButton() {
+function WhiteButton(props) {
+    console.log(props)
     return (
-        <button className="whiteButton" onKeyDown={log}>
-            button
+        <button
+            className="whiteButton"
+            onTouchStart={() => synth.triggerAttack(props.note)}
+            onTouchEnd={()=>synth.triggerRelease()}
+            onMouseDown={() => synth.triggerAttack(props.note)}
+            onMouseUp={()=>synth.triggerRelease()}
+        >
+            {props.keyboardKey}/{props.note}
         </button>
     );
 }
