@@ -6,7 +6,7 @@ synth.oscillator.type = "sine";
 synth.toMaster();
 
 function WhiteButton(props) {
-    console.log(props)
+    console.log(props);
     return (
         <button
             className="whiteButton"
@@ -15,7 +15,8 @@ function WhiteButton(props) {
             onMouseDown={() => synth.triggerAttack(props.note)}
             onMouseUp={()=>synth.triggerRelease()}
         >
-            {props.keyboardKey}/{props.note}
+            <p>{props.keyboardKey}</p>
+            <p>{props.note}</p>
         </button>
     );
 }
