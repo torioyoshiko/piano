@@ -6,7 +6,6 @@ synth.oscillator.type = "sine";
 synth.toMaster();
 
 function WhiteButton(props) {
-    console.log(props);
     return (
         <button
             className="whiteButton"

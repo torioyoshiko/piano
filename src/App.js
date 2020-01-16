@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import WhiteButton from "./components/whiteButton";
 import Tone from "tone";
+import ToneUpButton from './components/ToneUpButton.js';
+import ToneDownButton from "./components/ToneDownButton";
 
 const synth = new Tone.Synth();
 synth.oscillator.type = "sine";
@@ -99,11 +101,7 @@ let arr = [
     }
 ];
 
-for (let i = 0; i <arr.length; i++){
-    console.log(arr[i])
-}
-
-
+arr.reverse();
 
 function App() {
     let buttons = [];
@@ -115,12 +113,15 @@ function App() {
         }
         buttons.push(row);
     }
-    buttons.reverse();
 
     return (
         <div className="App">
-            {buttons.map((arr, index)=>{
-                return <div className="row" key={index}> {arr} </div>
+            {buttons.map((whiteButtonsRow, index) => {
+                return <div className="row" key={index}>
+                    <ToneDownButton/>
+                    {whiteButtonsRow}
+                    <ToneUpButton keyboardRow={arr[index]}/>
+                </div>
             })}
         </div>
     );
